@@ -4,21 +4,23 @@ import jwt from "jsonwebtoken";
 
 const userSchema=new mongoose.Schema({
     fullName:{
+        firstName:{  
         type:String,
         required:true,
         minlength:[3,'First name must be three characters or long']
-
-    },
+        },
+        
     lastName:{
         type:String,
-        minlength:[3,'First name must be three characters or long']
+        minlength:[3,'last name must be three characters or long']
 
     },
+},
     email:{
         type:String,
         required:true,
         unique:true,
-        minlength:[3,'First name must be three characters or long']        
+   
     },
     password:{
         type:String,
@@ -39,8 +41,8 @@ userSchema.methods.comparePassword=async function(password){
     return await bcrypt.compare(password,this.password)
 
 }
-userSchema.static.hasPassword=async function(password){
-    return await bcrypt.hash(compare,10)
+userSchema.statics.hashPassword=async function(password){
+    return await bcrypt.hash(password,10)
 
 }
 export const User=mongoose.model('User',userSchema)
