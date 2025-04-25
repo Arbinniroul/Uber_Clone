@@ -73,3 +73,80 @@ Content-Type: application/json
   "email": "john.doe@example.com",
   "password": "password123"
 }
+```
+# User Login Endpoint Documentation
+
+## **POST** `/user/login`
+
+### **Description**
+This endpoint allows users to log in by providing their email and password. It validates the input, checks the credentials against the database, and returns a JSON Web Token (JWT) and user details upon successful authentication.
+
+---
+
+### **Request Body**
+The request body should be in JSON format and include the following fields:
+
+| Field      | Type     | Required | Description                                                                 |
+|------------|----------|----------|-----------------------------------------------------------------------------|
+| `email`    | `string` | Yes      | The email address of the user. Must be a valid email format.               |
+| `password` | `string` | Yes      | The password for the user. Must be at least 8 characters long.             |
+
+---
+
+### **Validation Rules**
+- `email`: Must be a valid email address.
+- `password`: Must be at least 8 characters long.
+
+---
+
+### **Response**
+#### **Success (200)**
+- **Body**:
+    ```json
+    {
+      "token": "string", // JWT token for authentication
+      "user": {
+        "_id": "string",
+        "fullName": {
+          "firstName": "string",
+          "lastName": "string"
+        },
+        "email": "string"
+      }
+    }
+    ```
+
+#### **Error (400)**
+- **Body**:
+    ```json
+    {
+      "errors": [
+        {
+          "msg": "string", // Validation error message
+          "param": "string", // Field that caused the error
+          "location": "body"
+        }
+      ]
+    }
+    ```
+
+#### **Error (401)**
+- **Body**:
+    ```json
+    {
+      "message": "Invalid email or password"
+    }
+    ```
+
+---
+
+### **Example Request**
+```json
+POST /user/login
+Content-Type: application/json
+
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
