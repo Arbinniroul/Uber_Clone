@@ -74,6 +74,7 @@ Content-Type: application/json
   "password": "password123"
 }
 ```
+
 # User Login Endpoint Documentation
 
 ## **POST** `/user/login`
@@ -150,3 +151,133 @@ Content-Type: application/json
   "password": "password123"
 }
 ```
+
+# User Logout and Profile Endpoints Documentation
+
+---
+
+## **GET** `/user/logout`
+
+### **Description**
+This endpoint allows users to log out by invalidating their current JWT token. The token is added to a blacklist to prevent further use, and the authentication cookie is cleared.
+
+---
+
+### **Headers**
+| Header            | Type     | Required | Description                                      |
+|-------------------|----------|----------|--------------------------------------------------|
+| `Authorization`   | `string` | Yes      | The Bearer token for the user (if not using cookies). |
+
+---
+
+### **Response**
+#### **Success (200)**
+- **Body**:
+    ```json
+    {
+      "success": true,
+      "message": "Logged out successfully"
+    }
+    ```
+
+#### **Error (500)**
+- **Body**:
+    ```json
+    {
+      "message": "An error occurred while logging out"
+    }
+    ```
+
+---
+
+### **Example Request**
+```http
+GET /user/logout
+Authorization: Bearer <your-jwt-token>
+```
+
+---
+
+### **Example Success Response**
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "success": true,
+  "message": "Logged out successfully"
+}
+```
+
+---
+
+## **GET** `/user/profile`
+
+### **Description**
+This endpoint allows authenticated users to retrieve their profile information. The user must be logged in and provide a valid JWT token.
+
+---
+
+### **Headers**
+| Header            | Type     | Required | Description                                      |
+|-------------------|----------|----------|--------------------------------------------------|
+| `Authorization`   | `string` | Yes      | The Bearer token for the user.                  |
+
+---
+
+### **Response**
+#### **Success (200)**
+- **Body**:
+    ```json
+    {
+      "user": {
+        "_id": "string",
+        "fullName": {
+          "firstName": "string",
+          "lastName": "string"
+        },
+        "email": "string"
+      }
+    }
+    ```
+
+#### **Error (401)**
+- **Body**:
+    ```json
+    {
+      "message": "Unauthorized"
+    }
+    ```
+
+---
+
+### **Example Request**
+```http
+GET /user/profile
+Authorization: Bearer <your-jwt-token>
+```
+
+---
+
+### **Example Success Response**
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "user": {
+    "_id": "64f9c1e2b5d6c2a1b8e4f9c1",
+    "fullName": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "john.doe@example.com"
+  }
+}
+```
+
+---
+
+### **Notes**
+- The `/user/logout` endpoint uses a blacklist mechanism to invalidate tokens for 24 hours.
+- The `/user/profile` endpoint requires the `authMiddleware` to validate the user's token before returning profile information.

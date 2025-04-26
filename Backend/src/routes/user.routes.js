@@ -13,26 +13,25 @@ router.post(
       .withMessage("First name must be at least 3 characters"),
     body("fullName.lastName")
       .trim()
-      .optional()
-      .isLength({ min: 3 })
-      .withMessage("Last name must be at least 3 characters"),
+      .optional(),
     body("email")
       .trim()
       .isEmail()
       .withMessage("Please provide a valid email")
       .normalizeEmail(),
     body("password")
-      .isLength({ min: 8 })
-      .withMessage("Password must be at least 8 characters"),
+      .isLength({ min: 6 })
+      .withMessage("Password must be at least 6 characters"),
   ],
   registerUser
 );
 router.post('/login',[
-    body('email').isEmail().withMessage('Please provide a valid email').normalizeEmail(),
-    body('password').isLength({min:8}).withMessage('Password must be at least 8 characters')
+    body('email').isEmail().withMessage('Please provide a valid email'),
+    body('password').isLength({min:6}).withMessage('Password must be at least 6characters')
     ],loginUser
     )
 router.get('/profile',authMiddleware,userProfile);
+
 router.get('/logout',authMiddleware,logoutUser);
 
 export default router;
