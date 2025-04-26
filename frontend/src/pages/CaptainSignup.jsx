@@ -45,7 +45,7 @@ const CaptainSignup = () => {
                   <input type="email" className='bg-[#eeeeee]  rounded px-4 mb-6  py-2  text-lg placeholder:text-lg outline-none  w-full' value={email} onChange={(e)=>setEmail(e.target.value)} required placeholder='email@example.com' />
                   <h3 className='text-lg font-medium   mb-2 '>Enter password</h3>
                   <input type="password"  className='bg-[#eeeeee]  rounded px-4 mb-6 py-2  text-lg placeholder:text-lg outline-none w-full ' value={password} onChange={(e)=>setPassword(e.target.value)} required placeholder='password' />
-                  <button  className='bg-[#111] text-white border rounded px-4 mb-3  py-2  text-lg placeholder:text-lg outline-none w-full '  >Signup</button>
+                  <button  className='bg-[#111] text-white border rounded px-4 mb-3  py-2  text-lg placeholder:text-lg outline-none w-full '  >Create Captain's Account</button>
                  <p className='text-center '>Already have an account? <Link to={'/userLogin'} className="mb-6 text-blue-600 ">Login</Link></p> 
       
        
