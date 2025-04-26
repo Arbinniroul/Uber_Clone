@@ -17,7 +17,7 @@ const UserLogin = () => {
         password:password,
     })
 
-    console.log(userData)
+
 }
 
   return (
