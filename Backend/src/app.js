@@ -3,6 +3,7 @@ import  dotenv  from "dotenv";
 import cors from "cors"
 import { connectDB } from "./connection/db.js";
 import userRoutes from "./routes/user.routes.js"
+import captainRoutes from "./routes/captain.routes.js"
 import cookieParser from "cookie-parser";
 dotenv.config();
 
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use('/user',userRoutes);
-
+app.use('/captain',captainRoutes)
 app.get('/',(req,res)=>{
     res.send("Hello world")
 })
