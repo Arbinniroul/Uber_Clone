@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import { BatteryLow, Calendar, Calendar1, CalendarPlus, CalendarPlusIcon, Circle, Clock, Dot, DotSquare, DotSquareIcon, Send, Square, SquareDot } from 'lucide-react'
+import Footer from '../components/Footer'
 
 const Home = () => {
   return (
@@ -159,6 +160,7 @@ const Home = () => {
 
 </div>
 </div>
+<Footer/>
     </div>
   )
 }

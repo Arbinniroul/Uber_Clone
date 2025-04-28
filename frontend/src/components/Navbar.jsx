@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { LucideMenu, MenuIcon, Search } from 'lucide-react'
 const Navbar = ({handlePopUp}) => {
 
