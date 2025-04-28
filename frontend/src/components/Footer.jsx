@@ -8,8 +8,8 @@ const Footer = () => {
         <div className='flex flex-col gap-9'>
           <h1 className='text-xl'>Uber</h1>
           <p>Visit help center</p>
-          <div className='flex gap-44 items-center mt-18'>
-            <div className='flex flex-col gap-3'>
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-8 p-8">
+            <div className='flex flex-col  gap-3'>
             <h1 className='text-xl mb-1'>Company</h1>
             <p>Visit help center</p>
             <p>Visit help center</p>
@@ -20,7 +20,7 @@ const Footer = () => {
             <p>Visit help center</p>
 
             </div>
-            <div className='flex flex-col gap-3'>
+            <div className='flex flex-col  gap-3'>
             <h1 className='text-xl mb-1'>Company</h1>
             <p>Visit help center</p>
             <p>Visit help center</p>
@@ -55,7 +55,7 @@ const Footer = () => {
             </div>
 
           </div>
-          <div className='flex flex-col lg:flex-row justify-end gap-4 mt-10 '>
+          <div className='flex  justify-end gap-4 mt-10 '>
             <div className='flex gap-2 items-center'>
                 <Globe className='size-4'/>
                 English (International)
