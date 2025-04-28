@@ -10,6 +10,7 @@ import Start from './pages/Start'
 import Home from './pages/Home'
 import  UserProtector  from './pages/UserProtector'
 import UserLogout from './pages/UserLogout'
+import Practice from './pages/Practice'
 
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
                   <UserLogout />
               </UserProtector>
           } />
+          <Route path='/practice' element={<Practice/>}/>
       </Routes>
   );
 };
