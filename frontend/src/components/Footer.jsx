@@ -8,7 +8,7 @@ const Footer = () => {
         <div className='flex flex-col gap-9'>
           <h1 className='text-xl'>Uber</h1>
           <p>Visit help center</p>
-          <div class="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-8 p-8">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-8 p-8">
             <div className='flex flex-col  gap-3'>
             <h1 className='text-xl mb-1'>Company</h1>
             <p>Visit help center</p>

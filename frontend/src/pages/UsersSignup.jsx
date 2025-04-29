@@ -31,7 +31,8 @@ const UsersSignup = () => {
             const data = await response.data;
             setUserData(data.user);
             localStorage.setItem('token', data.token);
-            navigate('/home');
+            localStorage.setItem('user', data.user);
+            navigate('/userLogin');
 
             
         } else {

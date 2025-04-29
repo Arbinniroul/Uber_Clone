@@ -1,22 +1,44 @@
 import React, { useState } from 'react'
 import uberDriver from '../assets/uber-driver.svg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const CaptainLogin = () => {
         const [email, setEmail] = useState('')
         const [password, setPassword] = useState('')
         const [captainData, setCaptainData] = useState({})
-        const handleSubmit=(e)=>{
+        const navigate=useNavigate()
+        const handleSubmit=async(e)=>{
         e.preventDefault()
-        setEmail('')
-        setPassword('')
-        setCaptainData({ 
+        const captainSubmitData={
             email:email,
             password:password,
-        })
+        };
+        const response=await axios.post(`${import.meta.env.VITE_BASE_URL}/captain/login`,captainSubmitData)
+      
+        if(response.status==200){
+          const data = response.data;
+          setCaptainData(data.captain);
+           localStorage.setItem('captaintoken', data.token)
+
+         
+          navigate('/home-captain');
+        
+            navigate('/captain-home')
+
+        }
+        else{
+           console.log('error')
+
+        }
+        setEmail('')
+        setPassword('')
+       
+
     
         console.log(captainData)
     }
+  
   return (
        <div className='p-7 h-screen flex flex-col  justify-between'>
     
@@ -29,7 +51,7 @@ const CaptainLogin = () => {
                 <input type="email" className='bg-[#eeeeee]  rounded px-4 mb-7  py-2 w-full text-lg placeholder:text-base outline-none  ' value={email} onChange={(e)=>setEmail(e.target.value)} required placeholder='email@example.com' />
                 <h3 className='text-lg font-medium   mb-2 '>Enter password</h3>
                 <input type="password"  className='bg-[#eeeeee]  rounded px-4 mb-7 py-2 w-full text-lg placeholder:text-base outline-none  ' value={password} onChange={(e)=>setPassword(e.target.value)} required placeholder='password' />
-                <button  className='bg-[#111] text-white border rounded px-4 mb-3  py-2 w-full text-lg placeholder:text-base outline-none  '  >Login</button>
+                <button  className='bg-[#111] text-white border rounded px-4 mb-3  py-2 w-full text-lg placeholder:text-base outline-none  ' onClick={handleSubmit} >Login</button>
                <p className='text-center '>Join a fleet ? <Link to={'/captain-signup'} className="mb-3 text-blue-600 ">Register as Driver</Link></p> 
     
      

@@ -27,14 +27,15 @@ const UserLogin = () => {
                 const data = response.data;
                 setUserData(data.user);
                  localStorage.setItem('token', data.token)
+                 localStorage.setItem('user', data.user)
                 setUser(data.user); 
-                navigate('/home');
+                navigate('/');
             } else {
                 console.error('Unexpected response status:', response.status);
             }
         } catch (error) {
             console.error('Login failed:', error.response?.data?.message || error.message);
-            // Optionally show error to user
+           
         } finally {
             setEmail('')
             setPassword('')

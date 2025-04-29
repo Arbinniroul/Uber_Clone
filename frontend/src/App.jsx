@@ -1,51 +1,42 @@
-import React, { useContext } from 'react'
+import React from 'react';
+import { Outlet, Route, Routes } from 'react-router-dom';
 
-import CaptainLogin from './pages/CaptainLogin'
-import CaptainSignup from './pages/CaptainSignup'
-import UsersSignup from './pages/UsersSignup'
-import UserLogin from './pages/UserLogin'
-import { Route, Routes } from 'react-router-dom'
-import { UserDataContext } from './context/UserContext'
-import Start from './pages/Start'
-import Home from './pages/Home'
-import  UserProtector  from './pages/UserProtector'
-import UserLogout from './pages/UserLogout'
-import Practice from './pages/Practice'
-
+import CaptainLogin from './pages/CaptainLogin';
+import CaptainSignup from './pages/CaptainSignup';
+import UsersSignup from './pages/UsersSignup';
+import UserLogin from './pages/UserLogin';
+import Start from './pages/Start';
+import UserProtector from './pages/UserProtector';
+import UserLogout from './pages/UserLogout';
+import Practice from './pages/Practice';
+import CaptainHome from './pages/CaptainHome';
+import CaptainProtector from './pages/CaptainProtector';
+import Home from './pages/Home';
 
 const App = () => {
   return (
-      <Routes>
-          <Route path="/" element={<Start />} />
-          <Route path="/captain-login" element={<CaptainLogin />} />
-          <Route path="/captain-signup" element={<CaptainSignup />} />
-          
-        
-          <Route path="/userSignup" element={
+    <Routes>
+  
+      <Route element={<UserProtector> <Outlet /> </UserProtector>}>
+        <Route path="/" element={<Home />} />
+        <Route path="/userLogin" element={<UserLogin />} />
+        <Route path="/userSignup" element={<UsersSignup />} />
+        <Route path="/user/logout" element={<UserLogout />} />
+      </Route>
 
-                  <UsersSignup />
+    
+      <Route path="/captain-login" element={<CaptainLogin />} />
+      <Route path="/captain-signup" element={<CaptainSignup />} />
+      <Route path="/captain-home" element={
+        <CaptainProtector>
+          <CaptainHome />
+        </CaptainProtector>
+      } />
 
-          } />
-          <Route path="/userLogin" element={
 
-                  <UserLogin />
-
-          } />
-
-          <Route path="/home" element={
-            <UserProtector>
-              <Home />
-            </UserProtector>
-
-          } />
-          <Route path="/user/logout" element={
-              <UserProtector>
-                  <UserLogout />
-              </UserProtector>
-          } />
-          <Route path='/practice' element={<Practice/>}/>
-      </Routes>
+      <Route path="/practice" element={<Practice />} />
+    </Routes>
   );
 };
 
-export default App
+export default App;
