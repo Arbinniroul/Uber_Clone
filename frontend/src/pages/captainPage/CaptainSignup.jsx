@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import uberDriver from '../assets/uber-driver.svg';
+
 import { Link, useNavigate } from 'react-router-dom';
-import { CaptainDataContext } from '../context/CaptainContext';
+import { CaptainDataContext } from '../../context/CaptainContext';
 import axios from 'axios';
 
 const CaptainSignup = () => {
@@ -72,7 +72,7 @@ const CaptainSignup = () => {
     return (
         <div className='p-4 h-screen flex flex-col justify-between'>
             <div>
-                <img className='w-16 mb-2' src={uberDriver} alt="Uber Driver" />
+            <div className='text-3xl mb-10 tracking-tighter font-medium'>Uber</div>
                 
                 {error && (
                     <div className="mb-3 text-red-500 text-sm text-center">

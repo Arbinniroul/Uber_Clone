@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import uberDriver from '../assets/uber-driver.svg'
+
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -43,8 +43,7 @@ const CaptainLogin = () => {
        <div className='p-7 h-screen flex flex-col  justify-between'>
     
     <div>
-    <img className=' w-20 mb-3' src={uberDriver} alt="" />
-    
+    <div className='text-3xl mb-10 tracking-tighter font-medium'>Uber</div>
     <form onSubmit={(e)=>{handleSubmit(e)}} >
                 
                 <h3 className='text-lg font-medium mb-2 '>What' s your email</h3>

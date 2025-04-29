@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import { UserDataContext } from '../context/UserContext';
+import { UserDataContext } from '../../context/UserContext';
 const UserLogout = () => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();

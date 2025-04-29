@@ -1,21 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Navbar from '../components/Navbar'
+import Navbar from '../../components/Navbar'
 import { BatteryLow, Calendar, Calendar1, CalendarPlus, CalendarPlusIcon, Circle, Clock, Dot, DotSquare, DotSquareIcon, Send, Square, SquareDot } from 'lucide-react'
-import Footer from '../components/Footer'
-import { UserDataContext } from '../context/UserContext';
+import Footer from '../../components/Footer'
+import { UserDataContext } from '../../context/UserContext';
 import {   useNavigate } from 'react-router-dom';
-import { skipToken } from '@reduxjs/toolkit/query';
 
 
 
 const Home = () => {
   const {user, setUser} = useContext(UserDataContext);
+
   const navigate = useNavigate();
    const token = localStorage.getItem('token');
-   const webuser = localStorage.getItem('user');
-   const [isUserExists, setIsUserExists] = useState(() => {
-    return !!(skipToken  && webuser);
 
+   const [isUserExists, setIsUserExists] = useState(() => {
+    const user = localStorage.getItem('user');
+    return !!(user && token);
   });
  
   useEffect(() => {
@@ -23,7 +23,7 @@ const Home = () => {
     const user = localStorage.getItem('user');
     setIsUserExists(!!(user && token));
   }, [user]);
-   console.log(isUserExists)
+
   const handleAuth=(route)=>{
     if(route==="login"){
       if (user && token) {
@@ -50,8 +50,11 @@ const Home = () => {
       
 
     }
-
+ 
   }
+  const handleClick = () => {
+    navigate('/user-service');
+  };
   return (
     <div className="min-w-[320px] w-full max-w-[100vw] overflow-x-hidden ">
       <Navbar  handleAuth={handleAuth} isUserExists={isUserExists}/>
@@ -63,8 +66,8 @@ const Home = () => {
           </div>
           
           
-          <div className='flex flex-col gap-4 mx-auto md:mx-0 lg:w-[400px] w-[300px] justify-center relative'>
-            <div className='bg-[#f3f3f3] py-1 cursor-text w-full  px-4 gap-4 relative rounded group flex focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-black items-center justify-start'>
+          <div className='flex flex-col gap-4 mx-auto md:mx-0 lg:w-[400px]  w-[300px] justify-center relative'>
+            <div onInput={handleClick} className={'bg-[#f3f3f3]  py-1 cursor-text w-full  px-4 gap-4 relative rounded group flex focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-black items-center justify-start'}>
 
            
             <Dot className='size-2 stroke-2 bg-black rounded-full'/>
@@ -72,7 +75,7 @@ const Home = () => {
             
           
             
-            <input type="text" className='outline-none  py-2' placeholder='Pickup location' />
+            <input type="text"  onClick={handleClick}  className='outline-none  py-2' placeholder='Pickup location' />
 
             <Send className='absolute right-0 mr-3'/>
             
@@ -110,7 +113,7 @@ const Home = () => {
            
 
             <div className='flex gap-10 items-center '>
-  <button className='px-6 py-3 bg-black text-white rounded-lg hover:bg-black/85 cursor-pointer translate-tranform duration-300 ease-in-out' onClick={isUserExists?()=>{}:handleAuth("userSignin")}>See Prices</button>
+  <button className='px-6 py-3 bg-black text-white rounded-lg hover:bg-black/85 cursor-pointer translate-tranform duration-300 ease-in-out' onClick={isUserExists?()=>{}:()=>handleAuth("signup")}>See Prices</button>
   <button className='text-gray-600 border-b-1 cursor-pointer' onClick={isUserExists?()=>{}:()=>handleAuth("login")}>{isUserExists?"Find Driver":"Login to see your recent activity"}</button>
 </div>
            

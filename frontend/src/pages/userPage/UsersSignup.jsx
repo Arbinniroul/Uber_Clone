@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
-import uberIMG from '../assets/uber.png'
+
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import  { UserDataContext } from '../context/UserContext'
+import  { UserDataContext } from '../../context/UserContext'
 
 
 const UsersSignup = () => {
@@ -48,7 +48,7 @@ const UsersSignup = () => {
     <div className='p-7 h-screen flex flex-col  justify-between'>
   
   <div>
-  <img className='w-20 h-11 mb-10' src={uberIMG} alt="" />
+  <div className='text-3xl mb-10 tracking-tighter font-medium'>Uber</div>
   
   <form onSubmit={(e)=>{handleSubmit(e)}} >
                 <h3 className='text-lg font-medium mb-2 '>What' s your name</h3>
